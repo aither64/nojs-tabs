@@ -1,0 +1,14 @@
+#tabbar ul li {
+	float: left;
+	padding: 0 20px 0 20px;
+	border-top: 1px solid #000;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	list-style-type: none;
+}
+
+#tabs {
+	clear: both;
+	margin-top: 20px;
+	border: 1px solid #000;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>NoJS Tabs with jQuery</title>
+		<link rel="stylesheet" href="horizontal.css">
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="../nojs-tabs.js"></script>
+		<style>
+			li.tab-active a {
+				font-weight: bold;
+			}
+
+			div.tab-hidden {
+				display: none;
+			}
+
+			div.tab-active {
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="tabbar">
+			<!-- <ul> with tabs will be created here -->
+		</div>
+
+		<div id="tabs">
+			<!-- container for all tabs, every child element represents a tab -->
+			<div id="tab1">
+				<h1>Title of tab 1</h1>
+				<p>Some content...</p>
+			</div>
+			
+			<div id="tab2">
+				<h1>Title of tab 2</h1>
+				<p>Some different content...</p>
+			</div>
+			
+			<div id="tab3">
+				<h1>Title of tab 3</h1>
+				<p>Some completely unrelated content...</p>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+				// Create tabs
+				nojsTabs({
+					tabs: document.getElementById('tabs'),
+					titleSelector: 'h1',
+					tabBar: document.getElementById('tabbar'),
+					hiddenClass: 'tab-hidden',
+					activeClass: 'tab-active',
+					transition: function (from, to, cb) {
+						console.log('transition', from.id, to.id);
+
+						$(from).fadeOut('slow', function() {
+							$(to).fadeIn('slow', cb)
+						});
+					}
+				});
+		</script>
+	</body>
+</html>
