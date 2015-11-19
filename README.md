@@ -81,7 +81,8 @@ tab.querySelector(`titleSelector`).innerHTML. It can also be a `function (tab)`
 that returns the title for given tab.
 
 ### `tabBar`
-Element in which `<ul>` with tab titles is created.
+Element in which `<ul>` with tab titles is created. The `tabBar` element must
+have a unique id.
 
 ### `hiddenClass`
 Class that is given to tabs and respective `<li>` when the tab is not active.

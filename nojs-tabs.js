@@ -14,6 +14,16 @@
 		opts.tabBar.appendChild(ul);
 
 		this.init();
+
+		var that = this;
+
+		window.onpopstate = function(e) {
+			if (!e.state || !e.state.tabBar || that.opts.tabBar.id !== e.state.tabBar) {
+				return;
+			}
+			
+			that.switchTab(document.getElementById(e.state.tab), false);
+		};
 	};
 
 	nojsTabs.Version = '0.1.0';
@@ -31,6 +41,9 @@
 
 		a.addEventListener('click', function (e) {
 			that.switchTab(tab);
+
+			if (history.pushState)
+				e.preventDefault();
 		});
 
 		a.appendChild(a_text);
@@ -92,7 +105,7 @@
 		}
 	};
 
-	nojsTabs.prototype.switchTab = function (targetTab) {
+	nojsTabs.prototype.switchTab = function (targetTab, pushState) {
 		var that = this;
 		var activeTab = this.opts.tabs.querySelector('.'+this.opts.activeClass);
 
@@ -111,6 +124,13 @@
 
 		else
 			this.transition(activeTab, targetTab);
+
+		if ((pushState === undefined || pushState) && history.pushState) {
+			history.pushState({
+				tabBar: this.opts.tabBar.id,
+				tab: targetTab.id
+			}, null, '#'+targetTab.id);
+		}
 	};
 
 	nojsTabs.prototype.transition = function(activeTab, targetTab) {
