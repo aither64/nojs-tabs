@@ -55,10 +55,16 @@
 	nojsTabs.prototype.getTitle = function (tab) {
 		var s = this.opts.titleSelector;
 
-		if (typeof s === 'string' || s instanceof String)
-			return tab.querySelector(s).innerHTML;
+		if (typeof s === 'string' || s instanceof String) {
+			var el = tab.querySelector(s);
+			var ret = el.innerHTML;
+			
+			if (this.opts.removeHeading === undefined || this.opts.removeHeading)
+				el.parentElement.removeChild(el);
 
-		else
+			return ret;
+
+		} else
 			return s(tab);
 	};
 

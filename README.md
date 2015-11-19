@@ -80,6 +80,10 @@ If a string, the title is found with
 tab.querySelector(`titleSelector`).innerHTML. It can also be a `function (tab)`
 that returns the title for given tab.
 
+### `removeHeading`
+If true, the heading from the tab is removed and appears only in the tab bar.
+This option is not evaluated if `titleSelector` is a function. Defaults to true.
+
 ### `tabBar`
 Element in which `<ul>` with tab titles is created. The `tabBar` element must
 have a unique id.
