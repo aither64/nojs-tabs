@@ -53,9 +53,14 @@
 					activeClass: 'tab-active',
 					transition: function (from, to, cb) {
 						console.log('transition', from.id, to.id);
+						console.log(from.tabAnchor, to.tabAnchor);
 
 						$(from).fadeOut('slow', function() {
-							$(to).fadeIn('slow', cb)
+							$(from.tabAnchor).removeClass('tab-active');
+							$(from.tabAnchor).addClass('tab-hidden');
+							$(to.tabAnchor).removeClass('tab-hidden');
+							$(to.tabAnchor).addClass('tab-active');
+							$(to).fadeIn('slow', cb); // pass the callback function
 						});
 					}
 				});

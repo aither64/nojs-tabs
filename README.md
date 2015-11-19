@@ -66,7 +66,8 @@ Initial active tab is searched in order:
  - the first tab that has `activeClass` from the start
  - the first tab
 
-Each`<li>` has id set to `tab-anchor-<tab id>`.
+Each `<li>` has id set to `tab-anchor-<tab id>` and is also accesible as
+property `tabAnchor` of every tab element.
 
 If JavaScript is not available, the `<ul>` is not created and the content is
 fully readable.

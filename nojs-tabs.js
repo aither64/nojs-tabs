@@ -48,6 +48,8 @@
 
 		a.appendChild(a_text);
 		li.appendChild(a);
+
+		tab.tabAnchor = li;
 	
 		return li;
 	};
@@ -140,11 +142,8 @@
 	};
 
 	nojsTabs.prototype.transition = function(activeTab, targetTab) {
-		var activeA = document.getElementById('tab-anchor-' + activeTab.id);
-		var targetA = document.getElementById('tab-anchor-' + targetTab.id);
-		
-		this.deactivate([activeTab, activeA]);
-		this.activate([targetTab, targetA]);
+		this.deactivate([activeTab, activeTab.tabAnchor]);
+		this.activate([targetTab, targetTab.tabAnchor]);
 		
 		// afterChange
 		if (this.opts.beforeChange !== undefined)
