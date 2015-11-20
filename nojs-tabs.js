@@ -50,6 +50,13 @@
 		li.appendChild(a);
 
 		tab.tabAnchor = li;
+		tab.tabAnchor.activate = function () {
+			that.activate([this]);
+		};
+		
+		tab.tabAnchor.deactivate = function () {
+			that.deactivate([this]);
+		};
 	
 		return li;
 	};

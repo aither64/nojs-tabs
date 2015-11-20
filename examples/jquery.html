@@ -56,11 +56,11 @@
 						console.log(from.tabAnchor, to.tabAnchor);
 
 						$(from).fadeOut('slow', function() {
-							$(from.tabAnchor).removeClass('tab-active');
-							$(from.tabAnchor).addClass('tab-hidden');
-							$(to.tabAnchor).removeClass('tab-hidden');
-							$(to.tabAnchor).addClass('tab-active');
-							$(to).fadeIn('slow', cb); // pass the callback function
+							// Switch active tab in tab bar
+							from.tabAnchor.deactivate();
+							to.tabAnchor.activate();
+
+							$(to).fadeIn('slow', cb); // Pass the callback function
 						});
 					}
 				});

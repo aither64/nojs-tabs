@@ -66,9 +66,6 @@ Initial active tab is searched in order:
  - the first tab that has `activeClass` from the start
  - the first tab
 
-Each `<li>` has id set to `tab-anchor-<tab id>` and is also accesible as
-property `tabAnchor` of every tab element.
-
 If JavaScript is not available, the `<ul>` is not created and the content is
 fully readable.
 
@@ -108,6 +105,28 @@ the classes yourself.
 `function (previousTab, activeTab)` that is called after the tab transition.
 This function is called only if `transition` is not set or if it calls the
 `callback`.
+
+## Accessing anchors in tab bar
+Each `<li>` in tab bar has id set to `tab-anchor-<tab id>` and is also accesible
+as property `tabAnchor` of every tab element.
+
+`tabAnchor` has functions `activate()` and `deactivate()` to switch active tabs
+in tab bar. These functions can be used e.g. in custom transition method:
+
+```js
+nojsTabs({
+	// ... options ...,
+	transition: function (from, to, cb) {
+		// Switch active tabs
+		from.tabAnchor.deactivate();
+		to.tabAnchor.activate();
+	
+		// Start some transition effect that will switch tab contents and call the
+		// callback when finished
+		someEffect(from, to, cb);
+	}
+});
+```
 
 ## License
 Released under the MIT license.
