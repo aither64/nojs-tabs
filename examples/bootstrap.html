@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>NoJS Tabs with Bootstrap</title>
+		<script type="text/javascript" src="../nojs-tabs.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+			integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+			crossorigin="anonymous">
+		<style>
+			div.tab-hidden {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="tabbar">
+			<!-- <ul> with tabs will be created here -->
+		</div>
+
+		<div id="tabs">
+			<!-- container for all tabs, every child element represents a tab -->
+			<div id="tab1">
+				<h1>Title of tab 1</h1>
+				<p>Some content...</p>
+			</div>
+			
+			<div id="tab2">
+				<h1>Title of tab 2</h1>
+				<p>Some different content...</p>
+			</div>
+			
+			<div id="tab3">
+				<h1>Title of tab 3</h1>
+				<p>Some completely unrelated content...</p>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			// Create tabs
+			nojsTabs({
+				tabs: document.getElementById('tabs'),
+				titleSelector: 'h1',
+				tabBar: document.getElementById('tabbar'),
+				hiddenClass: 'tab-hidden',
+				activeClass: 'active',
+				createElement: function (el) {
+					// This callback is used to add bootstrap-specific classes to newly
+					// created elements.
+
+					if (el.tagName == 'UL')
+						el.classList.add('nav', 'nav-tabs');
+
+					else if (el.tagName == 'LI')
+						el.setAttribute('role', 'presentation');
+				},
+			});
+		</script>
+	</body>
+</html>
