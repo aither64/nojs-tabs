@@ -106,6 +106,12 @@ the classes yourself.
 This function is called only if `transition` is not set or if it calls the
 `callback`.
 
+### `createElement`
+`function (element)` called when creating new elements, such as `<ul>`, `<li>`
+and `<a>`. If this function returns an element, it is used instead of the original
+`element` argument. It can be used to customize created elements, e.g. add classes
+and attributes.
+
 ## Accessing anchors in tab bar
 Each `<li>` in tab bar has id set to `tab-anchor-<tab id>` and is also accesible
 as property `tabAnchor` of every tab element.
